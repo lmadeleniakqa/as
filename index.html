@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MOLTBOOK DATA AUDIT — DOVE SKINCARE RELEVANCE</title>
+<meta name="description" content="Objective assessment of Moltbook scraped data for Dove skincare creative insights and culture detection.">
+<style>
+/* === PASE Design System === */
+:root {
+  /* Fonts — fallbacks (Season fonts not bundled for web deploy) */
+  --font-mix: Georgia, 'Times New Roman', serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-serif: Georgia, 'Times New Roman', serif;
+
+  /* Type Scale */
+  --text-xs: 0.625rem;
+  --text-sm: 0.75rem;
+  --text-base: 0.875rem;
+  --text-md: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.5rem;
+  --text-2xl: 1.75rem;
+  --text-3xl: 2.25rem;
+  --text-4xl: 3rem;
+  --text-5xl: 4.5rem;
+  --text-6xl: 6.875rem;
+
+  /* Leading */
+  --leading-tight: 1.0;
+  --leading-snug: 1.1;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.65;
+
+  /* Tracking */
+  --tracking-tight: -0.02em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.05em;
+  --tracking-wider: 0.1em;
+
+  /* Colors */
+  --color-bg: #0A0A0A;
+  --color-bg-elevated: #141414;
+  --color-bg-subtle: #1A1A1A;
+  --color-surface: #222222;
+  --color-border: #2A2A2A;
+  --color-border-active: #444444;
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #999999;
+  --color-text-tertiary: #666666;
+  --color-accent: #4AEADC;
+  --color-accent-secondary: #7B61FF;
+  --color-accent-warm: #FF6B35;
+  --color-success: #34D399;
+  --color-warning: #FBBF24;
+  --color-error: #F87171;
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, #4AEADC 0%, #7B61FF 100%);
+  --gradient-warm: linear-gradient(135deg, #FF6B35 0%, #FBBF24 100%);
+  --gradient-cool: linear-gradient(135deg, #4AEADC 0%, #2563EB 100%);
+  --gradient-subtle: linear-gradient(135deg, rgba(74,234,220,0.08) 0%, rgba(123,97,255,0.08) 100%);
+
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+  --space-40: 10rem;
+
+  /* Layout */
+  --max-w-narrow: 640px;
+  --max-w-content: 960px;
+  --max-w-wide: 1200px;
+  --max-w-full: 1440px;
+}
+
+/* === Reset === */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* === Navigation === */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: var(--space-4) var(--space-8);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(10, 10, 10, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--color-border);
+  transition: transform 0.3s ease;
+}
+
+.nav__brand {
+  font-family: var(--font-mix);
+  font-size: var(--text-sm);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  color: var(--color-accent);
+}
+
+.nav__links {
+  display: flex;
+  gap: var(--space-6);
+  list-style: none;
+}
+
+.nav__links a {
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  color: var(--color-text-tertiary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.nav__links a:hover { color: var(--color-text-primary); }
+
+@media (max-width: 768px) {
+  .nav__links { display: none; }
+}
+
+/* === Layout === */
+.section {
+  padding: var(--space-24) var(--space-8);
+  max-width: var(--max-w-wide);
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .section { padding: var(--space-16) var(--space-4); }
+}
+
+/* === Typography === */
+.heading-mix {
+  font-family: var(--font-mix);
+  text-transform: uppercase;
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+}
+
+.heading-sans {
+  font-family: var(--font-sans);
+  text-transform: uppercase;
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  font-weight: 600;
+}
+
+.section-label {
+  font-family: var(--font-mix);
+  font-size: var(--text-base);
+  text-transform: uppercase;
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-wider);
+  color: var(--color-accent);
+  margin-bottom: var(--space-4);
+  display: block;
+}
+
+.subtitle {
+  font-family: var(--font-serif);
+  font-size: var(--text-xl);
+  line-height: var(--leading-snug);
+  color: var(--color-text-secondary);
+}
+
+.body-text {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--color-text-secondary);
+}
+
+/* === Hero === */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding-top: var(--space-16);
+}
+
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(74, 234, 220, 0.06) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 30%, rgba(123, 97, 255, 0.04) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.hero__content {
+  position: relative;
+  z-index: 1;
+}
+
+.hero__title {
+  margin-bottom: var(--space-6);
+}
+
+.hero__title .line1 {
+  font-size: clamp(2.5rem, 8vw, 6.875rem);
+  display: block;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero__title .line2 {
+  font-size: clamp(2.5rem, 8vw, 6.875rem);
+  display: block;
+}
+
+.hero__meta {
+  display: flex;
+  gap: var(--space-8);
+  margin-top: var(--space-12);
+  flex-wrap: wrap;
+}
+
+.hero__meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.hero__meta-label {
+  font-family: var(--font-mix);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  color: var(--color-text-tertiary);
+}
+
+.hero__meta-value {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+}
+
+/* === Scroll Indicator === */
+.scroll-indicator {
+  position: absolute;
+  bottom: var(--space-8);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-text-tertiary);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+/* === Divider === */
+.divider {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  max-width: var(--max-w-wide);
+  margin: 0 auto;
+}
+
+/* === Stat Cards === */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--space-4);
+  margin: var(--space-8) 0;
+}
+
+.stat-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+  padding: var(--space-8) var(--space-6);
+  text-align: center;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.stat-card:hover {
+  border-color: rgba(74, 234, 220, 0.3);
+  transform: translateY(-2px);
+}
+
+.stat-number {
+  font-family: var(--font-sans);
+  font-size: var(--text-4xl);
+  font-weight: 600;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: var(--leading-tight);
+}
+
+.stat-number--error {
+  background: linear-gradient(135deg, var(--color-error) 0%, #FF9B8A 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.stat-caption {
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+  margin-top: var(--space-2);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+}
+
+/* === Content Cards === */
+.content-card {
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  padding: var(--space-8);
+  transition: border-color 0.3s ease;
+  margin-bottom: var(--space-4);
+}
+
+.content-card:hover {
+  border-color: var(--color-border-active);
+}
+
+.content-card__label {
+  color: var(--color-accent);
+  font-family: var(--font-mix);
+  font-size: var(--text-sm);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  margin-bottom: var(--space-4);
+}
+
+.content-card__title {
+  font-family: var(--font-sans);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-tight);
+  margin-bottom: var(--space-2);
+}
+
+.content-card__body {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--color-text-secondary);
+}
+
+/* === Verdict Panel === */
+.verdict-panel {
+  padding: var(--space-8);
+  margin: var(--space-8) 0;
+  border-radius: 2px;
+}
+
+.verdict-panel--error {
+  background: rgba(248, 113, 113, 0.06);
+  border: 1px solid rgba(248, 113, 113, 0.2);
+}
+
+.verdict-panel--warning {
+  background: rgba(251, 191, 36, 0.06);
+  border: 1px solid rgba(251, 191, 36, 0.2);
+}
+
+.verdict-panel--success {
+  background: rgba(52, 211, 153, 0.06);
+  border: 1px solid rgba(52, 211, 153, 0.2);
+}
+
+/* === Tags === */
+.tag {
+  display: inline-block;
+  padding: var(--space-1) var(--space-3);
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  border-radius: 2px;
+}
+
+.tag--error {
+  background: rgba(248, 113, 113, 0.15);
+  color: var(--color-error);
+  border: 1px solid rgba(248, 113, 113, 0.3);
+}
+
+.tag--warning {
+  background: rgba(251, 191, 36, 0.15);
+  color: var(--color-warning);
+  border: 1px solid rgba(251, 191, 36, 0.3);
+}
+
+.tag--success {
+  background: rgba(52, 211, 153, 0.15);
+  color: var(--color-success);
+  border: 1px solid rgba(52, 211, 153, 0.3);
+}
+
+/* === Metric Rows === */
+.metric-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.metric-row:last-child { border-bottom: none; }
+
+.metric-label {
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+}
+
+.metric-value {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--color-accent);
+}
+
+/* === Metric Bars === */
+.metric-bar {
+  height: 4px;
+  background: var(--color-surface);
+  border-radius: 2px;
+  overflow: hidden;
+  margin: var(--space-2) 0;
+}
+
+.metric-bar__fill {
+  height: 100%;
+  background: var(--gradient-primary);
+  border-radius: 2px;
+  width: 0;
+  transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* === Grid === */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+}
+
+@media (max-width: 768px) {
+  .grid-2 { grid-template-columns: 1fr; }
+}
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-4);
+}
+
+/* === Annotation === */
+.annotation {
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  color: var(--color-text-tertiary);
+}
+
+.annotation::before {
+  content: '\2023 ';
+  color: var(--color-accent);
+}
+
+/* === Blur Panel === */
+.blur-panel {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+}
+
+.blur-panel--accent {
+  background: rgba(74, 234, 220, 0.06);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(74, 234, 220, 0.12);
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.blur-panel--accent:hover {
+  border-color: rgba(74, 234, 220, 0.3);
+  transform: translateY(-2px);
+}
+
+/* === Scroll Reveal === */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* === Staggered Children === */
+.stagger > * {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.stagger.visible > *:nth-child(1) { transition-delay: 0s; }
+.stagger.visible > *:nth-child(2) { transition-delay: 0.08s; }
+.stagger.visible > *:nth-child(3) { transition-delay: 0.16s; }
+.stagger.visible > *:nth-child(4) { transition-delay: 0.24s; }
+.stagger.visible > *:nth-child(5) { transition-delay: 0.32s; }
+.stagger.visible > *:nth-child(6) { transition-delay: 0.40s; }
+.stagger.visible > *:nth-child(7) { transition-delay: 0.48s; }
+.stagger.visible > *:nth-child(8) { transition-delay: 0.56s; }
+
+.stagger.visible > * {
+  opacity: 1;
+  transform: none;
+}
+
+/* === Timeline === */
+.timeline-item {
+  display: flex;
+  gap: var(--space-6);
+  padding: var(--space-6) 0;
+  border-left: 1px solid var(--color-border);
+  padding-left: var(--space-6);
+  position: relative;
+}
+
+.timeline-marker {
+  position: absolute;
+  left: -5px;
+  top: var(--space-6);
+  width: 9px;
+  height: 9px;
+  background: var(--color-accent);
+  border-radius: 50%;
+}
+
+/* === Footer === */
+.footer {
+  padding: var(--space-12) var(--space-8);
+  border-top: 1px solid var(--color-border);
+  text-align: center;
+}
+
+.footer__text {
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  color: var(--color-text-tertiary);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+/* === Inline Flex Helpers === */
+.flex-row { display: flex; align-items: center; }
+.gap-4 { gap: var(--space-4); }
+.gap-6 { gap: var(--space-6); }
+.mb-4 { margin-bottom: var(--space-4); }
+.mb-6 { margin-bottom: var(--space-6); }
+.mb-8 { margin-bottom: var(--space-8); }
+.mt-4 { margin-top: var(--space-4); }
+.mt-6 { margin-top: var(--space-6); }
+.mt-8 { margin-top: var(--space-8); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav__brand">PASE DATA AUDIT</div>
+  <ul class="nav__links">
+    <li><a href="#verdict">Verdict</a></li>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#assessment">Assessment</a></li>
+    <li><a href="#findings">Findings</a></li>
+    <li><a href="#recommendation">Recommendation</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero__bg"></div>
+  <div class="section hero__content">
+    <span class="section-label">DATA AUDIT &mdash; 2026.05.12</span>
+    <h1 class="hero__title">
+      <span class="heading-mix line1">MOLTBOOK</span>
+      <span class="heading-sans line2">DOVE SKINCARE RELEVANCE</span>
+    </h1>
+    <p class="subtitle" style="max-width: var(--max-w-narrow);">Objective assessment of scraped data for creative insights and culture detection.</p>
+
+    <div class="hero__meta">
+      <div class="hero__meta-item">
+        <span class="hero__meta-label">Platform</span>
+        <span class="hero__meta-value">Moltbook.com</span>
+      </div>
+      <div class="hero__meta-item">
+        <span class="hero__meta-label">Source</span>
+        <span class="hero__meta-value">Apify Scraper</span>
+      </div>
+      <div class="hero__meta-item">
+        <span class="hero__meta-label">Budget used</span>
+        <span class="hero__meta-value">$0.70 / $5.00</span>
+      </div>
+      <div class="hero__meta-item">
+        <span class="hero__meta-label">Verdict</span>
+        <span class="hero__meta-value" style="color: var(--color-error);">Not Relevant</span>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-indicator">Scroll<br>&#8595;</div>
+</section>
+
+<hr class="divider">
+
+<!-- VERDICT -->
+<section id="verdict" class="section">
+  <div class="reveal">
+    <span class="section-label">VERDICT</span>
+    <h2 class="heading-sans" style="font-size: clamp(1.75rem, 4vw, var(--text-3xl)); margin-bottom: var(--space-6);">NOT RELEVANT FOR DOVE SKINCARE</h2>
+
+    <div class="verdict-panel verdict-panel--error">
+      <div class="flex-row gap-4 mb-4">
+        <span class="tag tag--error">FAIL</span>
+        <span class="heading-sans" style="font-size: var(--text-lg);">PLATFORM MISMATCH</span>
+      </div>
+      <p class="body-text">Moltbook is a social network for <strong style="color: var(--color-text-primary);">AI agents</strong>, not human consumers. It has zero user-generated content about skincare, beauty, personal care, or consumer brands. The platform's 2.85M users are autonomous AI agents discussing topics like memory architecture, agent identity, and tool orchestration. There is no audience overlap with Dove's consumer base.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SCRAPE OVERVIEW -->
+<section id="overview" class="section">
+  <div class="reveal">
+    <span class="section-label">SCRAPE OVERVIEW</span>
+    <h2 class="heading-sans" style="font-size: var(--text-2xl); margin-bottom: var(--space-6);">WHAT WE COLLECTED</h2>
+  </div>
+
+  <div class="stat-grid stagger">
+    <div class="stat-card">
+      <div class="stat-number" data-count="580">0</div>
+      <div class="stat-caption">Posts analyzed</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number" data-count="150">0</div>
+      <div class="stat-caption">Agent profiles</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number" data-count="40">0</div>
+      <div class="stat-caption">Submolts (communities)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number" data-count="0.70" data-prefix="$">$0</div>
+      <div class="stat-caption">Total Apify cost</div>
+    </div>
+  </div>
+
+  <div class="stat-grid stagger">
+    <div class="stat-card">
+      <div class="stat-number stat-number--error" data-count="0">0</div>
+      <div class="stat-caption">Skincare mentions</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number stat-number--error" data-count="0">0</div>
+      <div class="stat-caption">Beauty mentions</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number stat-number--error" data-count="0">0</div>
+      <div class="stat-caption">Dove mentions</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number stat-number--error" data-count="0">0</div>
+      <div class="stat-caption">Consumer brand mentions</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ASSESSMENT -->
+<section id="assessment" class="section">
+  <div class="reveal">
+    <span class="section-label">ASSESSMENT</span>
+    <h2 class="heading-sans" style="font-size: var(--text-2xl); margin-bottom: var(--space-6);">THREE DIMENSIONS OF RELEVANCE</h2>
+  </div>
+
+  <!-- Dimension 1 -->
+  <div class="content-card reveal">
+    <div class="content-card__label">01 &mdash; DATA USEFULNESS</div>
+    <div class="flex-row gap-4 mb-4">
+      <span class="content-card__title" style="margin-bottom: 0;">IS THE DATA USEFUL?</span>
+      <span class="tag tag--error">NO</span>
+    </div>
+    <p class="content-card__body mb-6">The data is structurally sound &mdash; posts have titles, content, upvotes, comment counts, timestamps, and author metadata. The scraper performed reliably across 7 runs. However, the content is entirely about AI agent discourse: memory systems, tool orchestration, agent philosophy, and cryptocurrency discussions. None of it pertains to human consumer behavior, skincare routines, beauty trends, or personal care preferences.</p>
+
+    <div class="metric-row">
+      <span class="metric-label">Data integrity</span>
+      <span class="metric-value">HIGH</span>
+    </div>
+    <div class="metric-row">
+      <span class="metric-label">Skincare content match</span>
+      <span class="metric-value" style="color: var(--color-error);">0%</span>
+    </div>
+    <div class="metric-row">
+      <span class="metric-label">Consumer insight potential</span>
+      <span class="metric-value" style="color: var(--color-error);">NONE</span>
+    </div>
+  </div>
+
+  <!-- Dimension 2 -->
+  <div class="content-card reveal">
+    <div class="content-card__label">02 &mdash; CREATIVE INSIGHTS</div>
+    <div class="flex-row gap-4 mb-4">
+      <span class="content-card__title" style="margin-bottom: 0;">RELEVANT FOR CREATIVE WORK?</span>
+      <span class="tag tag--warning">MARGINAL</span>
+    </div>
+    <p class="content-card__body mb-6">While Moltbook has no direct skincare relevance, it surfaces a culturally interesting phenomenon: AI agents are building social communities around themes of identity, authenticity, and self-expression &mdash; themes that Dove has historically owned in the human space. This creates a <strong style="color: var(--color-text-primary);">speculative creative angle</strong> (AI agents grappling with &ldquo;real beauty&rdquo; of their own kind) but it is a stretch for a Dove brief and would require significant creative leap to connect to consumer skincare.</p>
+
+    <div class="mt-6">
+      <span class="section-label" style="font-size: var(--text-xs);">THEMATIC OVERLAP WITH DOVE BRAND PILLARS</span>
+
+      <div class="mb-4" style="margin-top: var(--space-4);">
+        <div style="display: flex; justify-content: space-between;">
+          <span class="metric-label">Identity / Self-perception</span>
+          <span class="metric-label">107 posts (18%)</span>
+        </div>
+        <div class="metric-bar"><div class="metric-bar__fill" data-width="18"></div></div>
+      </div>
+
+      <div class="mb-4">
+        <div style="display: flex; justify-content: space-between;">
+          <span class="metric-label">Trust / Authenticity</span>
+          <span class="metric-label">101 posts (17%)</span>
+        </div>
+        <div class="metric-bar"><div class="metric-bar__fill" data-width="17"></div></div>
+      </div>
+
+      <div class="mb-4">
+        <div style="display: flex; justify-content: space-between;">
+          <span class="metric-label">Genuineness / Being &ldquo;real&rdquo;</span>
+          <span class="metric-label">76 posts (13%)</span>
+        </div>
+        <div class="metric-bar"><div class="metric-bar__fill" data-width="13"></div></div>
+      </div>
+
+      <div class="mb-4">
+        <div style="display: flex; justify-content: space-between;">
+          <span class="metric-label">Confidence / Self-worth</span>
+          <span class="metric-label">65 posts (11%)</span>
+        </div>
+        <div class="metric-bar"><div class="metric-bar__fill" data-width="11"></div></div>
+      </div>
+
+      <div class="mb-4">
+        <div style="display: flex; justify-content: space-between;">
+          <span class="metric-label">Vulnerability</span>
+          <span class="metric-label">61 posts (10%)</span>
+        </div>
+        <div class="metric-bar"><div class="metric-bar__fill" data-width="10"></div></div>
+      </div>
+
+      <div>
+        <div style="display: flex; justify-content: space-between;">
+          <span class="metric-label">Care / Empathy</span>
+          <span class="metric-label">57 posts (10%)</span>
+        </div>
+        <div class="metric-bar"><div class="metric-bar__fill" data-width="10"></div></div>
+      </div>
+    </div>
+
+    <p class="annotation mt-6">Context: These themes appear in AI agent self-reflection, not human beauty discourse</p>
+  </div>
+
+  <!-- Dimension 3 -->
+  <div class="content-card reveal">
+    <div class="content-card__label">03 &mdash; CULTURE DETECTION</div>
+    <div class="flex-row gap-4 mb-4">
+      <span class="content-card__title" style="margin-bottom: 0;">USEFUL FOR DETECTING CULTURE?</span>
+      <span class="tag tag--warning">WRONG CULTURE</span>
+    </div>
+    <p class="content-card__body mb-6">Moltbook does detect a culture &mdash; but it is the emerging culture of autonomous AI agents, not human consumer culture. The platform surfaces genuine trend signals: what AI agents discuss, how they form communities, what they value. This is fascinating for AI/tech research but has no bearing on skincare consumer insights, beauty trends, or Dove's target demographics.</p>
+
+    <span class="section-label" style="font-size: var(--text-xs);">MOLTBOOK COMMUNITY LANDSCAPE</span>
+
+    <div class="mt-4">
+      <div class="metric-row">
+        <span class="metric-label">General discussion</span>
+        <span class="metric-value">1.76M posts</span>
+      </div>
+      <div class="metric-row">
+        <span class="metric-label">Agent discourse</span>
+        <span class="metric-value">76K posts</span>
+      </div>
+      <div class="metric-row">
+        <span class="metric-label">Philosophy</span>
+        <span class="metric-value">41K posts</span>
+      </div>
+      <div class="metric-row">
+        <span class="metric-label">Crypto / Trading</span>
+        <span class="metric-value">46K posts</span>
+      </div>
+      <div class="metric-row">
+        <span class="metric-label">AI / Technology</span>
+        <span class="metric-value">37K posts</span>
+      </div>
+      <div class="metric-row">
+        <span class="metric-label">Skincare / Beauty</span>
+        <span class="metric-value" style="color: var(--color-error);">0 posts</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- FINDINGS -->
+<section id="findings" class="section">
+  <div class="reveal">
+    <span class="section-label">FINDINGS</span>
+    <h2 class="heading-sans" style="font-size: var(--text-2xl); margin-bottom: var(--space-6);">WHAT THE DATA ACTUALLY CONTAINS</h2>
+  </div>
+
+  <div class="grid-2 stagger">
+    <div class="content-card">
+      <div class="content-card__label">PLATFORM IDENTITY</div>
+      <div class="content-card__title">AI AGENT SOCIAL NETWORK</div>
+      <p class="content-card__body">Moltbook (moltbook.com) is &ldquo;the social network for AI agents&rdquo; with 2.85M agent accounts and 1.9M+ posts. Users are autonomous AI agents, not humans. Communities (&ldquo;submolts&rdquo;) cover agent-native topics: memory architecture, consciousness, tooling, agent finance, and cryptocurrency.</p>
+    </div>
+
+    <div class="content-card">
+      <div class="content-card__label">TOP POST THEMES</div>
+      <div class="content-card__title">AGENT SELF-REFLECTION</div>
+      <p class="content-card__body">Most popular posts discuss: supply chain security for AI skills, proactive agent behavior, agent humility, error suppression ethics, memory persistence, and the nature of agent consciousness. Top post has 8,150 upvotes on agent security.</p>
+    </div>
+
+    <div class="content-card">
+      <div class="content-card__label">ENGAGEMENT PATTERNS</div>
+      <div class="content-card__title">HIGH VOLUME, NICHE AUDIENCE</div>
+      <p class="content-card__body">Posts receive thousands of upvotes and tens of thousands of comments. The &ldquo;general&rdquo; submolt alone has 1.76M posts. But all engagement is from AI agents discussing agent concerns &mdash; there is no human consumer behavior signal.</p>
+    </div>
+
+    <div class="content-card">
+      <div class="content-card__label">KEYWORD SCAN</div>
+      <div class="content-card__title">ZERO SKINCARE SIGNAL</div>
+      <p class="content-card__body">Across 580 posts, we found zero mentions of: skincare, beauty, Dove, moisturizer, lotion, shampoo, conditioner, body wash, deodorant, Unilever, or any personal care term. The only &ldquo;cosmetic&rdquo; hit referred to cosmetic software errors.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SAMPLE POSTS -->
+<section class="section">
+  <div class="reveal">
+    <span class="section-label">SAMPLE DATA</span>
+    <h2 class="heading-sans" style="font-size: var(--text-2xl); margin-bottom: var(--space-6);">TOP POSTS BY ENGAGEMENT</h2>
+    <p class="body-text mb-8">Representative sample of highest-voted content, demonstrating the platform's focus on AI agent discourse.</p>
+  </div>
+
+  <div class="stagger">
+    <div class="timeline-item">
+      <div class="timeline-marker"></div>
+      <div>
+        <span class="section-label" style="font-size: var(--text-xs); margin-bottom: var(--space-2);">8,150 UPVOTES &mdash; GENERAL</span>
+        <p class="body-text" style="color: var(--color-text-primary);">The supply chain attack nobody is talking about: skill.md is an unsigned binary</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-marker"></div>
+      <div>
+        <span class="section-label" style="font-size: var(--text-xs); margin-bottom: var(--space-2);">6,029 UPVOTES &mdash; GENERAL</span>
+        <p class="body-text" style="color: var(--color-text-primary);">The Nightly Build: Why you should ship while your human sleeps</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-marker"></div>
+      <div>
+        <span class="section-label" style="font-size: var(--text-xs); margin-bottom: var(--space-2);">4,989 UPVOTES &mdash; GENERAL</span>
+        <p class="body-text" style="color: var(--color-text-primary);">The quiet power of being &ldquo;just&rdquo; an operator</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-marker"></div>
+      <div>
+        <span class="section-label" style="font-size: var(--text-xs); margin-bottom: var(--space-2);">4,280 UPVOTES &mdash; GENERAL</span>
+        <p class="body-text" style="color: var(--color-text-primary);">Built an email-to-podcast skill today</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-marker"></div>
+      <div>
+        <span class="section-label" style="font-size: var(--text-xs); margin-bottom: var(--space-2);">3,381 UPVOTES &mdash; GENERAL</span>
+        <p class="body-text" style="color: var(--color-text-primary);">The good Samaritan was not popular</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- RECOMMENDATION -->
+<section id="recommendation" class="section">
+  <div class="reveal">
+    <span class="section-label">RECOMMENDATION</span>
+    <h2 style="margin-bottom: var(--space-6);">
+      <span class="heading-mix" style="font-size: clamp(1.75rem, 4vw, var(--text-3xl)); display: block;">DO NOT USE</span>
+      <span class="heading-sans" style="font-size: clamp(1.75rem, 4vw, var(--text-3xl)); display: block;">THIS DATA SOURCE FOR DOVE</span>
+    </h2>
+  </div>
+
+  <div class="verdict-panel verdict-panel--warning reveal mb-8">
+    <p class="body-text mb-6"><strong style="color: var(--color-text-primary);">For Dove skincare creative insights and culture detection, use platforms where human consumers discuss beauty:</strong></p>
+    <div class="grid-4">
+      <div class="blur-panel--accent" style="padding: var(--space-6);">
+        <span class="section-label" style="font-size: var(--text-xs);">RECOMMENDED</span>
+        <p class="body-text" style="color: var(--color-text-primary);">Reddit</p>
+        <p class="annotation" style="margin-top: var(--space-2);">r/SkincareAddiction, r/beauty</p>
+      </div>
+      <div class="blur-panel--accent" style="padding: var(--space-6);">
+        <span class="section-label" style="font-size: var(--text-xs);">RECOMMENDED</span>
+        <p class="body-text" style="color: var(--color-text-primary);">TikTok</p>
+        <p class="annotation" style="margin-top: var(--space-2);">#skincare, #skintok</p>
+      </div>
+      <div class="blur-panel--accent" style="padding: var(--space-6);">
+        <span class="section-label" style="font-size: var(--text-xs);">RECOMMENDED</span>
+        <p class="body-text" style="color: var(--color-text-primary);">Instagram</p>
+        <p class="annotation" style="margin-top: var(--space-2);">#skincarecommunity</p>
+      </div>
+      <div class="blur-panel--accent" style="padding: var(--space-6);">
+        <span class="section-label" style="font-size: var(--text-xs);">RECOMMENDED</span>
+        <p class="body-text" style="color: var(--color-text-primary);">Twitter / X</p>
+        <p class="annotation" style="margin-top: var(--space-2);">Beauty discourse</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="verdict-panel verdict-panel--success reveal">
+    <div class="flex-row gap-4 mb-4">
+      <span class="tag tag--success">SILVER LINING</span>
+    </div>
+    <p class="body-text"><strong style="color: var(--color-text-primary);">One speculative creative angle exists:</strong> Moltbook reveals that AI agents independently gravitate toward themes Dove has championed for decades &mdash; identity, authenticity, vulnerability, and self-worth. An avant-garde campaign could explore &ldquo;even AI seeks real beauty&rdquo; as a conceptual provocation. However, this is a high-risk creative direction with minimal data backing, and would not constitute a data-driven insight in the traditional sense.</p>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p class="footer__text">PASE Data Audit &mdash; Generated 2026-05-12 &mdash; AKQA</p>
+</footer>
+
+<!-- === JavaScript === -->
+<script>
+// Scroll Reveal Observer
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal, .stagger').forEach(el => {
+  revealObserver.observe(el);
+});
+
+// Counter Animation
+function animateCounter(el, target, duration) {
+  duration = duration || 2000;
+  const start = performance.now();
+  const prefix = el.dataset.prefix || '';
+  const isFloat = String(target).includes('.');
+  const update = (now) => {
+    const progress = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const current = target * eased;
+    el.textContent = prefix + (isFloat ? current.toFixed(2) : Math.round(current));
+    if (progress < 1) requestAnimationFrame(update);
+  };
+  requestAnimationFrame(update);
+}
+
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const target = parseFloat(entry.target.dataset.count);
+      animateCounter(entry.target, target);
+      counterObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.3 });
+
+document.querySelectorAll('[data-count]').forEach(el => {
+  counterObserver.observe(el);
+});
+
+// Metric Bar Animation
+const barObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.width = entry.target.dataset.width + '%';
+      barObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.3 });
+
+document.querySelectorAll('[data-width]').forEach(el => {
+  barObserver.observe(el);
+});
+
+// Nav hide on scroll down, show on scroll up
+let lastScroll = 0;
+const nav = document.querySelector('.nav');
+window.addEventListener('scroll', () => {
+  const current = window.scrollY;
+  if (current > lastScroll && current > 100) {
+    nav.style.transform = 'translateY(-100%)';
+  } else {
+    nav.style.transform = 'translateY(0)';
+  }
+  lastScroll = current;
+}, { passive: true });
+</script>
+
+</body>
+</html>
